@@ -7,7 +7,7 @@ var Map = React.createClass({
   componentDidMount: function(){
     var map = React.findDOMNode(this.refs.googlemap);
     var mapOptions = {
-      center: {lat: 37.7758, lng: -122.435},
+      center: {lat: 37.7858, lng: -122.412},
       zoom: 13
     };
     this.map = new google.maps.Map(map, mapOptions);
@@ -21,12 +21,12 @@ var Map = React.createClass({
     var northEast = {
       lat: LongLat.getNorthEast().G,
       lng: LongLat.getNorthEast().K
-    }
+    };
 
     var southWest = {
       lat: LongLat.getSouthWest().G,
       lng: LongLat.getSouthWest().K
-    }
+    };
 
     ApiUtil.fetchBenches({ data:
       { bounds:
