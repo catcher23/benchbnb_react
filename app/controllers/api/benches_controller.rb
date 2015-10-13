@@ -1,24 +1,25 @@
 class Api::BenchesController < ApplicationController
-
   def index
-    if params[:bounds]
-      @benches = Bench.in_bounds(params[:bounds])
-    else
-      @benches = Bench.all
+    benches = Bench.all
+    if bounds
+      benches = Bench.in_bounds(bounds)
     end
-
-    render json: @benches
+    @benches = benches
+    render 'index'
   end
 
   def create
-    @bench = Bench.new(bench_params)
-
-    render json: @bench
+    bench = Bench.create!(bench_params)
+    render json: bench
   end
 
   private
 
   def bench_params
     params.require(:bench).permit(:description, :lat, :lng)
+  end
+
+  def bounds
+    params[:bounds]
   end
 end

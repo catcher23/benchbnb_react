@@ -1,11 +1,9 @@
 class Bench < ActiveRecord::Base
+  validates :description, :lat, :lng, presence: true
   def self.in_bounds(bounds)
-    Bench.where(
-      "(lat BETWEEN ? AND ?) AND (lng BETWEEN ? AND ? )",
-      bounds[:southWest][:lat],
-      bounds[:northEast][:lat],
-      bounds[:southWest][:lng],
-      bounds[:northEast][:lng]
-    )
+    self.where("lat < ?", bounds[:northEast][:lat])
+        .where("lat > ?", bounds[:southWest][:lat])
+        .where("lng > ?", bounds[:southWest][:lng])
+        .where("lng < ?", bounds[:northEast][:lng])
   end
 end

@@ -1,1 +1,1 @@
-you can find me at views/api/benches/index.json.jbuilder
+json.partial! 'api/benches/bench', collection: @benches, as: :bench

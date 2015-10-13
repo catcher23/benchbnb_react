@@ -13,3 +13,30 @@
  *= require_tree .
  *= require_self
  */
+
+ .map {
+   width: 500px;
+   height: 500px;
+   float: left;
+   position: relative;
+ }
+
+ .reviews {
+   float: left;
+ }
+
+ .review-form {
+   float: left;
+ }
+
+ .bench-index-item {
+   border: 2px solid black;
+   width: 100%;
+   padding; 20px;
+   margin-bottom: 5px;
+   box-sizing: border-box;
+ }
+
+ .bench-index-item img {
+   height: 200px;
+ }

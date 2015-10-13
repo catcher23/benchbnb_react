@@ -1,13 +1,12 @@
 (function(root){
   var _benches = [];
-
   var CHANGE_EVENT = "change";
 
   var resetBenches = function(benches){
-  _benches = benches;
+  _benches = benches.slice(0);
 };
 
-  root.BenchStore = $.extend({}, EventEmitter.prototype, {
+  var BenchStore = root.BenchStore = $.extend({}, EventEmitter.prototype, {
     all: function(){
       return _benches.slice(0);
     },
@@ -22,7 +21,7 @@
 
   dispatcherID: AppDispatcher.register(function(payload){
      if(payload.actionType === BenchConstants.BENCHES_RECEIVED){
-         resetBenches(payload.benches);
+         var result = resetBenches(payload.benches);
          BenchStore.emit(CHANGE_EVENT);
      }
    })
